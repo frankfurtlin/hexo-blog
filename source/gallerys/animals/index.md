@@ -1,0 +1,12 @@
+{% gallery %} 
+![]( /gallerys/animals/1.jpg )
+![]( /gallerys/animals/2.jpg )
+![]( /gallerys/animals/3.jpg )
+![]( /gallerys/animals/4.jpg )
+![]( /gallerys/animals/5.jpg )
+![]( /gallerys/animals/6.jpg )
+![]( /gallerys/animals/7.jpg )
+![]( /gallerys/animals/8.jpg )
+![]( /gallerys/animals/9.jpg )
+![]( /gallerys/animals/10.jpg )
+{% endgallery %}

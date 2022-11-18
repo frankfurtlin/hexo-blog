@@ -1,0 +1,35 @@
+- class_name: 实用工具
+  class_desc: 一些好用的在线工具网站
+  link_list:
+    - name: PDF派
+      link: https://www.pdfpai.com/
+      avatar: https://www.pdfpai.com/statics/images/index_logo.png
+      descr: 强大的免费PDF在线工具
+    - name: 在线工具集
+      link: https://tool.lu/
+      avatar: https://tool.lu/favicon.ico
+      descr: 丰富的在线工具集
+    - name: 爱资料工具集
+      link: https://www.toolnb.com/
+      avatar: https://www.toolnb.com/favicon.ico
+      descr: 爱资料在线工具集
+    - name: 即时工具集
+      link: https://www.67tool.com/
+      avatar: https://www.67tool.com/favicon.ico
+      descr: 即时在线工具集
+
+- class_name: 资源网站
+  class_desc: 一些好用的在线资源网站
+  link_list:
+    - name: Bilibili
+      link: https://www.bilibili.com/
+      avatar: https://www.bilibili.com/favicon.ico
+      descr: 国内知名的视频弹幕网站
+    - name: 知乎
+      link: https://www.zhihu.com/
+      avatar: https://www.zhihu.com/favicon.ico
+      descr: 国内高质量的问答社区
+    - name: 风车动漫
+      link: http://www.dmlaa.com/
+      avatar: https://cdn.cnrjsd.com/statics/img/favicon.ico
+      descr: 免费的在线动漫网站
