@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>搭建 Git 服务器</title>
+      <link href="/2022/11/18/%E6%90%AD%E5%BB%BA-Git-%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <url>/2022/11/18/%E6%90%AD%E5%BB%BA-Git-%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="搭建-Git-服务器"><a href="#搭建-Git-服务器" class="headerlink" title="搭建 Git 服务器"></a>搭建 Git 服务器</h1><h2 id="1-本地生成登录用户的密钥"><a href="#1-本地生成登录用户的密钥" class="headerlink" title="1. 本地生成登录用户的密钥"></a>1. 本地生成登录用户的密钥</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成密钥</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;youremail@example.com&quot;</span></span><br><span class="line"><span class="comment"># 查看密钥</span></span><br><span class="line"><span class="built_in">cd</span> ~/.ssh &amp;&amp; vim id_rsa.pub</span><br><span class="line"><span class="comment"># 复制上述密钥留作后面粘贴到服务器的 /home/git/.ssh/authorized_keys</span></span><br></pre></td></tr></table></figure><h2 id="2-服务器安装-Git（以-centos-为例）"><a href="#2-服务器安装-Git（以-centos-为例）" class="headerlink" title="2. 服务器安装 Git（以 centos 为例）"></a>2. 服务器安装 Git（以 centos 为例）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新 yum</span></span><br><span class="line">yum update</span><br><span class="line"><span class="comment"># 安装 git</span></span><br><span class="line">yum install git</span><br><span class="line"><span class="comment"># 查看安装好的 git</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure><h2 id="3-创建一个-Git-用户，用来运行-Git-服务"><a href="#3-创建一个-Git-用户，用来运行-Git-服务" class="headerlink" title="3. 创建一个 Git 用户，用来运行 Git 服务"></a>3. 创建一个 Git 用户，用来运行 Git 服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser git</span><br></pre></td></tr></table></figure><h2 id="4-导入用户的公钥"><a href="#4-导入用户的公钥" class="headerlink" title="4. 导入用户的公钥"></a>4. 导入用户的公钥</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到用户目录</span></span><br><span class="line"><span class="built_in">cd</span> /home/git</span><br><span class="line"><span class="comment"># 新建.ssh目录</span></span><br><span class="line"><span class="built_in">mkdir</span> .ssh &amp;&amp; <span class="built_in">cd</span> .ssh</span><br><span class="line"><span class="comment"># 新建用户认证文件</span></span><br><span class="line"><span class="built_in">touch</span> authorized_keys &amp;&amp; vim authorized_keys</span><br><span class="line"><span class="comment"># 粘贴上述的本地用户公钥到该文件中</span></span><br></pre></td></tr></table></figure><h2 id="5-初始化-Git-项目"><a href="#5-初始化-Git-项目" class="headerlink" title="5. 初始化 Git 项目"></a>5. 初始化 Git 项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 假定是 /srv/sample.git</span></span><br><span class="line"><span class="built_in">cd</span> /srv</span><br><span class="line">git init --bare sample.git</span><br></pre></td></tr></table></figure><h2 id="6-将该项目-owner-改为-git-用户"><a href="#6-将该项目-owner-改为-git-用户" class="headerlink" title="6. 将该项目 owner 改为 git 用户"></a>6. 将该项目 owner 改为 git 用户</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chown</span> -R git:git sample.git</span><br></pre></td></tr></table></figure><h2 id="7-禁用-shell-登录"><a href="#7-禁用-shell-登录" class="headerlink" title="7. 禁用 shell 登录"></a>7. 禁用 shell 登录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 出于安全考虑，第三步创建的 git 用户不允许登录 shell，可以正常通过 ssh 使用 git</span></span><br><span class="line">vim /etc/passwd</span><br><span class="line"><span class="comment">#修改 git:x:1001:1001:,,,:/home/git:/bin/bash 为</span></span><br><span class="line"><span class="comment"># git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell</span></span><br></pre></td></tr></table></figure><h2 id="8-克隆远程仓库"><a href="#8-克隆远程仓库" class="headerlink" title="8. 克隆远程仓库"></a>8. 克隆远程仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@server_ip:/srv/sample.git</span><br></pre></td></tr></table></figure><h2 id="9-管理多人密钥"><a href="#9-管理多人密钥" class="headerlink" title="9. 管理多人密钥"></a>9. 管理多人密钥</h2><p><a href="https://github.com/res0nat0r/gitosis">Gitosis</a></p><h2 id="10-管理权限"><a href="#10-管理权限" class="headerlink" title="10. 管理权限"></a>10. 管理权限</h2><p><a href="https://github.com/sitaramc/gitolite">Gitolite</a></p><p>转载自廖雪峰博客<a href="https://www.liaoxuefeng.com/wiki/896043488029600/899998870925664">搭建Git服务器</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+            <tag> 服务器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mermaid</title>
+      <link href="/2022/11/16/mermaid/"/>
+      <url>/2022/11/16/mermaid/</url>
+      
+        <content type="html"><![CDATA[<p>使用mermaid标签可以绘制Flowchart（流程图）、Sequence diagram（时序图）、Class Diagram（类别图）、State Diagram（状态图）、Gantt（甘特图）和Pie Chart（圆形图），具体可以查看<a href="https://mermaid-js.github.io/mermaid/#/">mermaid文档</a></p><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">graph TD;</span><br><span class="line"><span class="code">    A--&gt;B;</span></span><br><span class="line"><span class="code">    A--&gt;C;</span></span><br><span class="line"><span class="code">    B--&gt;D;</span></span><br><span class="line"><span class="code">    C--&gt;D;</span></span><br><span class="line"><span class="code">&#123;% endmermaid %&#125;</span></span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graph TD;    A--&gt;B;    A--&gt;C;    B--&gt;D;    C--&gt;D;  </pre></div><h3 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">sequenceDiagram</span><br><span class="line"><span class="code">    participant Alice</span></span><br><span class="line"><span class="code">    participant Bob</span></span><br><span class="line"><span class="code">    Alice-&gt;&gt;John: Hello John, how are you?</span></span><br><span class="line"><span class="code">    loop Healthcheck</span></span><br><span class="line"><span class="code">        John-&gt;&gt;John: Fight against hypochondria</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    Note right of John: Rational thoughts &lt;br/&gt;prevail!</span></span><br><span class="line"><span class="code">    John--&gt;&gt;Alice: Great!</span></span><br><span class="line"><span class="code">    John-&gt;&gt;Bob: How about you?</span></span><br><span class="line"><span class="code">    Bob--&gt;&gt;John: Jolly good!</span></span><br><span class="line"><span class="code">&#123;% endmermaid %&#125;</span></span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  sequenceDiagram    participant Alice    participant Bob    Alice-&gt;&gt;John: Hello John, how are you?    loop Healthcheck        John-&gt;&gt;John: Fight against hypochondria    end    Note right of John: Rational thoughts &lt;br&#x2F;&gt;prevail!    John--&gt;&gt;Alice: Great!    John-&gt;&gt;Bob: How about you?    Bob--&gt;&gt;John: Jolly good!  </pre></div><h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">gantt</span><br><span class="line">dateFormat  YYYY-MM-DD</span><br><span class="line">title Adding GANTT diagram to mermaid</span><br><span class="line">excludes weekdays 2014-01-10</span><br><span class="line"></span><br><span class="line">section A section</span><br><span class="line">Completed task            :done,    des1, 2014-01-06,2014-01-08</span><br><span class="line">Active task               :active,  des2, 2014-01-09, 3d</span><br><span class="line">Future task               :         des3, after des2, 5d</span><br><span class="line">Future task2               :         des4, after des3, 5d</span><br><span class="line">&#123;% endmermaid %&#125;</span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  ganttdateFormat  YYYY-MM-DDtitle Adding GANTT diagram to mermaidexcludes weekdays 2014-01-10section A sectionCompleted task            :done,    des1, 2014-01-06,2014-01-08Active task               :active,  des2, 2014-01-09, 3dFuture task               :         des3, after des2, 5dFuture task2               :         des4, after des3, 5d  </pre></div><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">classDiagram</span><br><span class="line">Class01 &lt;|-- AveryLongClass : Cool</span><br><span class="line">Class03 *-- Class04</span><br><span class="line">Class05 o-- Class06</span><br><span class="line">Class07 .. Class08</span><br><span class="line">Class09 --&gt; C2 : Where am i?</span><br><span class="line">Class09 --* C3</span><br><span class="line">Class09 --|&gt; Class07</span><br><span class="line">Class07 : equals()</span><br><span class="line">Class07 : Object[] elementData</span><br><span class="line">Class01 : size()</span><br><span class="line">Class01 : int chimp</span><br><span class="line">Class01 : int gorilla</span><br><span class="line">Class08 &lt;--&gt; C2: Cool label</span><br><span class="line">&#123;% endmermaid %&#125;</span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  classDiagramClass01 &lt;|-- AveryLongClass : CoolClass03 *-- Class04Class05 o-- Class06Class07 .. Class08Class09 --&gt; C2 : Where am i?Class09 --* C3Class09 --|&gt; Class07Class07 : equals()Class07 : Object[] elementDataClass01 : size()Class01 : int chimpClass01 : int gorillaClass08 &lt;--&gt; C2: Cool label  </pre></div><h3 id="Git图"><a href="#Git图" class="headerlink" title="Git图"></a>Git图</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">gitGraph</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    branch develop</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">    checkout main</span><br><span class="line">    commit</span><br><span class="line">    commit</span><br><span class="line">&#123;% endmermaid %&#125;</span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  gitGraph    commit    commit    branch develop    commit    commit    commit    checkout main    commit    commit  </pre></div><h3 id="实体关系图"><a href="#实体关系图" class="headerlink" title="实体关系图"></a>实体关系图</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE-ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY-ADDRESS : uses</span><br><span class="line">&#123;% endmermaid %&#125;</span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  erDiagram    CUSTOMER ||--o{ ORDER : places    ORDER ||--|{ LINE-ITEM : contains    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses  </pre></div><h3 id="用户流程图"><a href="#用户流程图" class="headerlink" title="用户流程图"></a>用户流程图</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% mermaid %&#125;</span><br><span class="line">journey</span><br><span class="line">    title My working day</span><br><span class="line">    section Go to work</span><br><span class="line">      Make tea: 5: Me</span><br><span class="line">      Go upstairs: 3: Me</span><br><span class="line">      Do work: 1: Me, Cat</span><br><span class="line">    section Go home</span><br><span class="line">      Go downstairs: 5: Me</span><br><span class="line">      Sit down: 5: Me</span><br><span class="line">&#123;% endmermaid %&#125;</span><br></pre></td></tr></table></figure><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  journey    title My working day    section Go to work      Make tea: 5: Me      Go upstairs: 3: Me      Do work: 1: Me, Cat    section Go home      Go downstairs: 5: Me      Sit down: 5: Me  </pre></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo</title>
+      <link href="/2022/11/13/hexo/"/>
+      <url>/2022/11/13/hexo/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 框架 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
