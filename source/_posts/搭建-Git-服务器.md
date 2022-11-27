@@ -5,7 +5,7 @@ tags:
     - Git
     - 服务器
 categories: 服务器
-cover: /assets/img/cover/room.webp
+cover: /assets/img/cover/3.webp
 ---
 
 # 搭建 Git 服务器

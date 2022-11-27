@@ -5,7 +5,7 @@ tags:
     - 教程
     - 工具
 categories: 教程
-cover: /assets/img/cover/fire.jpg
+cover: /assets/img/cover/2.webp
 ---
 
 使用mermaid标签可以绘制Flowchart（流程图）、Sequence diagram（时序图）、Class Diagram（类别图）、State Diagram（状态图）、Gantt（甘特图）和Pie Chart（圆形图），具体可以查看[mermaid文档](https://mermaid-js.github.io/mermaid/#/)

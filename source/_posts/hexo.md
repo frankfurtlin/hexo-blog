@@ -5,7 +5,7 @@ tags:
     - 教程
     - 框架
 categories: 教程
-cover: /assets/img/cover/dark.webp
+cover: /assets/img/cover/1.webp
 ---
 
 ## Quick Start
