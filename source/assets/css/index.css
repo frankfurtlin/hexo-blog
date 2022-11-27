@@ -304,3 +304,13 @@ h6::before {
 [data-theme="dark"] #content-inner>#page{
     background: #121212;
 }
+
+/* 设置字体 */
+@font-face{
+    font-family: 'SmileySans-Oblique';  
+    src: url('../font/SanJiXingKaiJianTi-Cu.ttf') format("truetype");
+    /* src: url('../font/JingNanMaiYuanTi.otf') format("opentype"); */
+}
+body {
+    font-family: 'SmileySans-Oblique';
+}
