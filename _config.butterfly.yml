@@ -11,6 +11,9 @@ menu:
     音乐: /music/ || fas fa-music
     电影: /movies/ || fas fa-video
     照片: /gallerys/ || fas fa-images
+  其他||fas fa-list:
+    2048: http://frankfurtlin.xyz/2048 || fas fa-gamepad
+    fire: http://frankfurtlin.xyz/fire || fas fa-fire
   女朋友专区: http://frankfurtlin.xyz/love || fas fa-heart
   链接: /link/ || fas fa-link
 
@@ -208,7 +211,7 @@ reward:
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
-  enable: true
+  enable: false
   url: https://github.com/frankfurtlin/hexo-blog/edit/main/source/
 
 # Related Articles
