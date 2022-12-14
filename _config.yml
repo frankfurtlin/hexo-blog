@@ -13,7 +13,7 @@ timezone: 'Asia/shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://frankfurtlin.github.io
+url: https://www.frankfurtlin.xyz
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -106,6 +106,7 @@ deploy:
   repo: 
     github: https://github.com/frankfurtlin/frankfurtlin.github.io.git
   branch: master
+  message: ""
 
 # 音乐插件
 aplayer: 
