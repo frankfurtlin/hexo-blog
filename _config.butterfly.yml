@@ -12,9 +12,9 @@ menu:
     电影: /movies/ || fas fa-video
     照片: /gallerys/ || fas fa-images
   其他||fas fa-list:
-    2048: http://frankfurtlin.xyz/2048 || fas fa-gamepad
-    fire: http://frankfurtlin.xyz/fire || fas fa-fire
-  女朋友专区: http://frankfurtlin.xyz/love || fas fa-heart
+    2048: http://frankfurtlin.top/2048 || fas fa-gamepad
+    fire: http://frankfurtlin.top/fire || fas fa-fire
+  女朋友专区: http://frankfurtlin.top/love || fas fa-heart
   链接: /link/ || fas fa-link
 
 # Code Blocks (代碼相關)
@@ -193,7 +193,7 @@ toc:
 post_copyright:
   enable: true
   decode: true
-  author_href: http://frankfurtlin.xyz
+  author_href: http://frankfurtlin.top
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
