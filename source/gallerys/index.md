@@ -5,6 +5,6 @@ type: gallerys
 ---
 
 <div class="gallery-group-main"> 
-{% galleryGroup '动物' '一些可爱的小动物~' '/gallerys/animals' /gallerys/animals/1.jpg %} 
-{% galleryGroup '其他' '一些稀奇古怪的图片~' '/gallerys/others' /gallerys/others/1.jpg %} 
+{% galleryGroup '动物' '一些可爱的小动物~' '/gallerys/animals' http://cdn.frankfurtlin.top/blog/animals/animal1.jpg %} 
+{% galleryGroup '其他' '一些稀奇古怪的图片~' '/gallerys/others' http://cdn.frankfurtlin.top/blog/others/other1.jpg %} 
 </div>

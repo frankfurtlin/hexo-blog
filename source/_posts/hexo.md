@@ -5,7 +5,7 @@ tags:
     - 教程
     - 框架
 categories: 教程
-cover: /assets/img/cover/1.webp
+cover: http://cdn.frankfurtlin.top/blog/covers/cover1.webp
 ---
 
 ## Quick Start

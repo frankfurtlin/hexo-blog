@@ -1,8 +1,8 @@
 {% gallery %} 
-![]( /gallerys/others/1.jpg )
-![]( /gallerys/others/2.jpg )
-![]( /gallerys/others/3.jpg )
-![]( /gallerys/others/4.jpg )
-![]( /gallerys/others/5.jpg )
-![]( /gallerys/others/6.jpg )
+![](http://cdn.frankfurtlin.top/blog/others/other1.jpg)
+![](http://cdn.frankfurtlin.top/blog/others/other2.jpg)
+![](http://cdn.frankfurtlin.top/blog/others/other3.jpg)
+![](http://cdn.frankfurtlin.top/blog/others/other4.jpg)
+![](http://cdn.frankfurtlin.top/blog/others/other5.jpg)
+![](http://cdn.frankfurtlin.top/blog/others/other6.jpg)
 {% endgallery %}

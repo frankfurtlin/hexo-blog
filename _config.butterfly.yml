@@ -80,11 +80,11 @@ katex:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /assets/img/favicon.png
+favicon: http://cdn.frankfurtlin.top/blog/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: /assets/img/avatar.jpg
+  img: http://cdn.frankfurtlin.top/blog/avatar.jpg
   effect: false
 
 # Disable all banner image
@@ -131,14 +131,14 @@ cover:
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
-  flink: /assets/img/friend_404.gif
-  post_page: /assets/img/404.jpg
+  flink: http://cdn.frankfurtlin.top/blog/404.png
+  post_page: http://cdn.frankfurtlin.top/blog/404.png
 
 # A simple 404 page
 error_404:
   enable: true
   subtitle: 'Page Not Found'
-  background: /assets/img/404.png
+  background: http://cdn.frankfurtlin.top/blog/404.png
 
 post_meta:
   page: # Home Page
@@ -201,10 +201,10 @@ post_copyright:
 reward:
   enable: false
   QR_code:
-    - img: /assets/img/QR/wechatpay.jpg
+    - img: 
       link:
       text: wechat
-    - img: /assets/img/QR/alipay.jpg
+    - img: 
       link:
       text: alipay
 
@@ -520,7 +520,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(/assets/img/background/cloud.webp)
+background: url(http://cdn.frankfurtlin.top/blog/cloud.webp)
 
 # Footer Background
 footer_bg: false

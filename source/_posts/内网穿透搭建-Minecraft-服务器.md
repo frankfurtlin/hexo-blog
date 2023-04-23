@@ -5,7 +5,7 @@ tags:
     - 服务器
     - Minecraft
 categories: 服务器
-cover: /assets/img/cover/8.webp
+cover: http://cdn.frankfurtlin.top/blog/covers/cover8.jpg
 ---
 
 # 内网穿透搭建 Minecraft 服务器

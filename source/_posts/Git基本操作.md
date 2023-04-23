@@ -5,7 +5,7 @@ tags:
     - Git
     - 编程工具
 categories: 编程技巧
-cover: /assets/img/cover/7.webp
+cover: http://cdn.frankfurtlin.top/blog/covers/cover7.webp
 ---
 
 # Git 基本操作
