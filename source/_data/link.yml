@@ -29,7 +29,12 @@
       link: https://www.zhihu.com/
       avatar: https://www.zhihu.com/favicon.ico
       descr: 国内高质量的问答社区
-    - name: 风车动漫
-      link: http://www.dmlaa.com/
-      avatar: https://cdn.cnrjsd.com/statics/img/favicon.ico
-      descr: 免费的在线动漫网站
+    - name: Slack
+      link: https://slack.com/intl/zh-cn/
+      avatar: https://a.slack-edge.com/cebaa/img/ico/favicon.ico
+      descr: 团队协作聊天工具
+    - name: POE
+      link: https://poe.com/
+      avatar: https://poe.com/favicon.ico
+      descr: 大语言模型对话网站
+

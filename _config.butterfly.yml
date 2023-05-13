@@ -640,6 +640,8 @@ subtitle:
   source: false
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
   sub:
+    - 书山有路勤为径，学海无涯苦作舟
+    - Never put off till tomorrow what you can do today
 
 # Loading Animation (加載動畫)
 preloader:
@@ -992,7 +994,7 @@ footer_beautify:
     - link: https://beian.miit.gov.cn/
       shields: https://img.shields.io/badge/%E9%84%82ICP%E5%A4%87-2022001977-blue?style=flat&logo=GoToMeeting
       message: 鄂ICP备2022001977号
-    - link: http://www.frankfurtlin.xyz/
+    - link: http://www.frankfurtlin.top/
       shields: https://img.shields.io/badge/Frankfurtlin-@2022-blue?style=flat&logo=Fing
       message: Frankfurtlin
     - link: http://creativecommons.org/licenses/by-nc-sa/4.0/
